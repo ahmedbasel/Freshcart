@@ -30,7 +30,6 @@ Check out the live version: **[Fresh Cart E-commerce](https://fresh-cart-ecommer
 - **Frontend:** Angular, TypeScript, Tailwind, Flowbite
 - **Backend:** Node.js, Express (if applicable)
 - **Database:** MongoDB / Firebase (if applicable)
-- **Hosting:** Vercel
 
 ## 📦 Installation & Setup
 
