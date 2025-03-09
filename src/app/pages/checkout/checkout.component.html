@@ -1,0 +1,26 @@
+<section class="w-full md:w-2/3 mx-auto">
+  <h2 class="text-center text-green-600 text-3xl mb-5 font-semibold"> {{"checkoutPage.checkoutPayments" | translate }} </h2>
+  <form class="max-w-xl mx-auto p-5 border border-green-600 rounded-lg" [formGroup]="checkoutForm" (ngSubmit)="payment() === 'online' ? checkoutOnline() : checkoutCash()" >
+    <div class="relative z-0 w-full mb-5 group">
+        <textarea  name="details" id="details" formControlName="details" class="block h-[100px] resize-none py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" "> </textarea>
+        <label for="details" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"checkoutPage.details" | translate }}</label>
+        <app-error-message [inputTitle]="'errors.detailsMsg' | translate" [inputControl]="details" ></app-error-message>
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="tel" name="phone" id="phone" formControlName="phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " />
+        <label for="phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"checkoutPage.phone" | translate }}</label>
+        <app-error-message [inputTitle]="'errors.phoneMsg' | translate" [inputMessage]="'errors.phoneError' | translate" [inputControl]="phone" ></app-error-message>
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="text" name="city" id="city" formControlName="city" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " />
+        <label for="city" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"checkoutPage.city" | translate }}</label>
+        <app-error-message [inputTitle]="'errors.cityMsg' | translate" [inputControl]="city" ></app-error-message>
+    </div>
+    <button type="submit" class="text-white bg-green-500 hover:bg-green-600 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">
+      {{ payment() === 'online' ? ('checkoutPage.online' | translate) : ('checkoutPage.cash' | translate) }}
+    </button>
+  </form>
+  @if (errorMsg()) {
+    <div class="text-center text-red-500 my-2 text-lg p-2"> {{errorMsg()}} </div>
+  }
+</section>

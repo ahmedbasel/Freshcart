@@ -1,0 +1,116 @@
+{
+  "navbar": {
+    "home": "Home",
+    "products": "Products",
+    "allorders": "Orders",
+    "categories": "Categories",
+    "brands": "Brands",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register",
+    "ar": "ar",
+    "en": "en"
+  },
+  "footer": {
+    "title": "get the freshCart app",
+    "desc": "we will send you a link, open it on your phone to download the app",
+    "payments": "payments partners",
+    "delivers": "get delivers with freshCart",
+    "btn": "share app link",
+    "copyright": "Copyright © All Right Reserved",
+    "author": "Ahmed basel"
+  },
+  "categories": {
+    "title": "Popular Categories"
+  },
+  "products": {
+    "title": "Popular Products",
+    "btn": "add to cart",
+    "price": "EGP"
+  },
+  "loginPage": {
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "forgetPassword": "forget password?",
+    "desc": "you don't have an account?",
+    "register": "register"
+  },
+  "registerPage": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "phone": "Phone",
+    "register": "Register",
+    "desc": "you have an account?",
+    "login": "login"
+  },
+  "forgetPasswordPage": {
+    "forgetPassword": "Forget Password",
+    "email": "Email",
+    "verifyEmail": "VerifyEmail",
+    "code": "Code",
+    "verifyCode": "VerifyCode",
+    "newPassword": "New Password",
+    "resetPassword": "Reset Password"
+  },
+  "cartPage": {
+    "cart": "Cart",
+    "items": "items",
+    "clearBtn": "Clear Cart",
+    "orderTitle": "Order Summary",
+    "price": "Price",
+    "priceCode": "EGP",
+    "discount": "Discount",
+    "shipping": "Shipping",
+    "couponApplied": "Coupon Applied",
+    "total": "Total",
+    "estmaitedDelivery": "Estmaited Delivery by",
+    "online": "online payment",
+    "cash": "cash payment",
+    "checkout": "Proceed to Checkout",
+    "free": "free",
+    "cartEmpty": "there are no items in your cart"
+  },
+  "checkoutPage": {
+    "checkoutPayments": "Checkout Payments",
+    "details": "Details",
+    "phone": "Phone",
+    "city": "City",
+    "online": "Checkout Online",
+    "cash": "Checkout Cash"
+  },
+  "wishlistPage": {
+    "wishlistEmpty": "there are no items in your wishlist",
+    "btn": "add to cart",
+    "priceCode": "EGP",
+    "price": "Price"
+  },
+  "errors": {
+    "emailMsg": "email is required",
+    "passwordMsg": "password is required",
+    "validEmail": "enter valid email",
+    "minlength": "name should be more than or equal 3 chars",
+    "maxlength": "name should be less than or equal 20 chars",
+    "passwordError": "password must start with upperCase then any 6 chars or more",
+    "nameMsg": "name is required",
+    "confirmPss": "confirm password is required",
+    "incorrectConfirmPass": "password confirmation is incorrect",
+    "phoneMsg": "phone is required",
+    "phoneError": "accept only egypt phone numbers",
+    "codeMsg": "Code is required",
+    "codeError": "Code must contain 6 numbers",
+    "detailsMsg": "details is required",
+    "cityMsg": "city is required"
+  },
+  "ordersPage": {
+    "image": "Image",
+    "name": "Name",
+    "price": "Price",
+    "quantity": "Quantity",
+    "total": "Total",
+    "date": "Date",
+    "priceCode": "EGP"
+  }
+}

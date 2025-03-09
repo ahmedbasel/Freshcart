@@ -1,0 +1,25 @@
+<section>
+  <input type="search" [(ngModel)]="searchInput" placeholder="search by title..." class="block p-[.5rem_.75rem] text-gray-500 w-[70%] mb-6 mx-auto outline-none border border-green-600 focus:ring-0 focus:border-border-green-600 rounded-lg" />
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+    @for (product of (products() | search: searchInput()) |  paginate: { id: 'products', itemsPerPage: limit(), currentPage: page(), totalItems: total() }
+      ; track product.id) {
+      <app-product-item [product]="product" ></app-product-item>
+    }
+  </div>
+  <div class="text-center my-5">
+    <pagination-controls
+      (pageChange)="changePage($event)"
+      (pageBoundsCorrection)="changePage($event)"
+      [maxSize]="5"
+      [directionLinks]="true"
+      [autoHide]="true"
+      [responsive]="true"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page"
+      id="products">
+    </pagination-controls>
+  </div>
+</section>

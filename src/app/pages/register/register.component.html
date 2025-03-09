@@ -1,0 +1,54 @@
+<section class="w-full md:w-2/3 mx-auto">
+  <h2 class="text-center text-green-600 text-3xl mb-5 font-semibold">{{"registerPage.register" | translate}}</h2>
+  <form class="max-w-xl mx-auto p-5 border border-green-600 rounded-lg" [formGroup]="registerForm" (ngSubmit)="register()" >
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="text" name="name" id="name" formControlName="name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " />
+        <label for="name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"registerPage.name" | translate}}</label>
+        <app-error-message [inputTitle]="'errors.nameMsg' | translate" [inputControl]="name"></app-error-message>
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="email" name="email" id="email" formControlName="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " />
+        <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"registerPage.email" | translate}}</label>
+        <app-error-message [inputTitle]="'errors.emailMsg' | translate" [inputControl]="email"></app-error-message>
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        <input [type]="!toggleInput() ? 'password' : 'text'" name="password" id="password" formControlName="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " />
+        <label for="password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"registerPage.password" | translate}}</label>
+        <span (click)="toggle()" class="absolute top-[20%] cursor-pointer" [class]="selectedLang() ? 'right-0' : 'left-0' ">
+          @if (!toggleInput()) {
+            <i class="fa fa-eye text-sm"></i>
+          } @else {
+            <i class="fa fa-eye-slash text-sm"></i>
+          }
+        </span>
+        <app-error-message [inputTitle]="'errors.passwordMsg' | translate" [inputControl]="password" [inputMessage]="'errors.passwordError' | translate"></app-error-message>
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="password" name="rePassword" id="rePassword" formControlName="rePassword" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " />
+        <label for="rePassword" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"registerPage.confirmPassword" | translate}}</label>
+        @if ((rePassword?.errors || registerForm.getError('mismatch')) && rePassword?.touched) {
+          <div class="mt-1">
+            <ul class="max-w-md space-y-1 text-red-600 list-none dark:text-gray-400">
+              @if (rePassword?.getError('required')) {
+                <li>{{'errors.confirmPss' | translate }}</li>
+              } @else {
+                <li>{{'errors.incorrectConfirmPass' | translate }}</li>
+              }
+            </ul>
+          </div>
+        }
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="tel" name="phone" id="phone" formControlName="phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " />
+        <label for="phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"registerPage.phone" | translate}}</label>
+        <app-error-message [inputTitle]="'errors.phoneMsg' | translate" [inputControl]="phone" [inputMessage]="'errors.phoneError' | translate"></app-error-message>
+    </div>
+    <button type="submit" class="text-white bg-green-500 hover:bg-green-600 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">
+      {{"registerPage.register" | translate}}
+    </button>
+    <p class="text-center my-3 text-gray-400">{{"registerPage.desc" | translate}} <a class="underline text-green-600 font-medium" routerLink="/auth/login">{{"registerPage.login" | translate}}</a></p>
+  </form>
+  @if (errorMsg()) {
+    <div class="text-center text-red-500 my-2 text-lg p-2"> {{errorMsg()}} </div>
+  }
+</section>

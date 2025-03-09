@@ -1,0 +1,86 @@
+<nav class="bg-gray-100 fixed top-0 left-0 w-full z-[9999] dark:bg-gray-900">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a routerLink="/home" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img loading="lazy" src="/images/freshcart-logo.svg" class="w-full h-10" alt="Logo" />
+    </a>
+    <button (click)="toggle()" class="lg:hidden inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+    <div [class.hidden]="!isOpen" class="w-full lg:flex lg:flex-grow lg:w-auto lg:px-10">
+      @if (isLogin()) {
+        <ul class="font-medium flex flex-col lg:p-0 mt-4 border rounded-lg lg:flex-row lg:space-x-2 rtl:space-x-reverse lg:mt-0 lg:border-0 dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700">
+          <li>
+            <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()" class="block py-2 px-3 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-lg" aria-current="page"> {{'navbar.home' | translate}} </a>
+          </li>
+          <li>
+            <a routerLink="/products" routerLinkActive="active" (click)="closeMenu()" class="block py-2 px-3 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-lg"> {{'navbar.products' | translate}} </a>
+          </li>
+          <li>
+            <a routerLink="/allorders" routerLinkActive="active" (click)="closeMenu()" class="block py-2 px-3 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-lg"> {{'navbar.allorders' | translate}} </a>
+          </li>
+          <li>
+            <a routerLink="/categories" routerLinkActive="active" (click)="closeMenu()" class="block py-2 px-3 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-lg"> {{'navbar.categories' | translate}} </a>
+          </li>
+          <li>
+            <a routerLink="/brands" routerLinkActive="active" (click)="closeMenu()" class="block py-2 px-3 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-lg"> {{'navbar.brands' | translate}} </a>
+          </li>
+        </ul>
+      }
+      <ul class="font-medium pt-4 ms-auto flex flex-row gap-4 lg:gap-0 lg:p-0 border rounded-lg lg:space-x-2 rtl:space-x-reverse lg:mt-0 lg:border-0 dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700">
+        @if (!isOpen) {
+          <li>
+            <a target="_blank" href="https://github.com/ahmedya3ser8" class="block py-2 px-1 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-sm">
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.facebook.com/ahmedya3ser8" class="block py-2 px-1 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-sm">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+          </li>
+          <li>
+            <a target="_blank" href="https://x.com/ahmed_ya3ser_8" class="block py-2 px-1 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-sm">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/in/ahmed-yasser-21382a267/" class="block py-2 px-1 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-sm">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+          </li>
+        }
+        @if (!isLogin()) {
+          <li>
+            <a routerLink="/auth/register" routerLinkActive="active" (click)="closeMenu()" class="block py-2 px-3 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-lg">{{'navbar.register' | translate}}</a>
+          </li>
+          <li>
+            <a routerLink="/auth/login" routerLinkActive="active" (click)="closeMenu()" class="block py-2 px-3 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-lg">{{'navbar.login' | translate}}</a>
+          </li>
+        } @else {
+          <li class="relative">
+            <a routerLink="/cart" routerLinkActive="cart" (click)="closeMenu()" class="block py-2 px-3 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-lg">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            <span class="absolute top-[-7px] right-[-1px] size-5 bg-green-600 text-white flex justify-center items-center rounded-md"> {{cartCounter()}} </span>
+          </li>
+          <li class="relative">
+            <a routerLink="/wishlist" routerLinkActive="cart" (click)="closeMenu()" class="block py-2 px-3 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-lg">
+              <i class="fa-solid fa-heart text-xl"></i>
+            </a>
+            <span class="absolute top-[-7px] right-[-1px] size-5 bg-green-600 text-white flex justify-center items-center rounded-md"> {{wishlistCounter()}} </span>
+          </li>
+          <li>
+            <a role="button" (click)="authService.logout()" (click)="closeMenu()" class="block py-2 px-3 text-gray-400 transition-all duration-700 hover:text-gray-700 cursor-pointer rounded-sm"> {{'navbar.logout' | translate}} </a>
+          </li>
+        }
+        <select (change)="changeLang($any($event.target).value)" class="border bg-gray-100 border-green-600 text-gray-400 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block !py-1 !px-2 !bg-none">
+          <option [selected]="selectOption()" value="en">{{'navbar.en' | translate}}</option>
+          <option [selected]="!selectOption()" value="ar">{{'navbar.ar' | translate}}</option>
+        </select>
+      </ul>
+    </div>
+  </div>
+</nav>

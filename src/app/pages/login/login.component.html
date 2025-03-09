@@ -1,0 +1,30 @@
+<section class="w-full md:w-2/3 mx-auto">
+  <h2 class="text-center text-green-600 text-3xl mb-5 font-semibold"> {{"loginPage.login" | translate}} </h2>
+  <form class="max-w-xl mx-auto p-5 border border-green-600 rounded-lg" [formGroup]="loginForm" (ngSubmit)="login()" >
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="email" name="email" id="email" formControlName="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " />
+        <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"loginPage.email" | translate}}</label>
+        <app-error-message [inputTitle]="'errors.emailMsg' | translate" [inputControl]="email"></app-error-message>
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        <input [type]="!toggleInput() ? 'password' : 'text'" name="password" id="password" formControlName="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " />
+        <label for="password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{"loginPage.password" | translate}}</label>
+        <span (click)="toggle()" class="absolute top-[20%] cursor-pointer" [class]="selectedLang() ? 'right-0' : 'left-0'" >
+          @if (!toggleInput()) {
+            <i class="fa fa-eye text-sm"></i>
+          } @else {
+            <i class="fa fa-eye-slash text-sm"></i>
+          }
+        </span>
+        <app-error-message [inputTitle]="'errors.passwordMsg' | translate" [inputControl]="password" [inputMessage]="'errors.passwordError' | translate" ></app-error-message>
+    </div>
+    <a routerLink="/auth/forget-password" class="underline my-3 text-green-600 block text-end">{{"loginPage.forgetPassword" | translate}}</a>
+    <button type="submit" class="text-white bg-green-500 hover:bg-green-600 focus:ring-0 focus:outline-none font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">
+      {{"loginPage.login" | translate}}
+    </button>
+    <p class="text-center my-3 text-gray-400">{{"loginPage.desc" | translate}} <a class="underline text-green-600 font-medium" routerLink="/auth/register">{{"loginPage.register" | translate}}</a></p>
+  </form>
+  @if (errorMsg()) {
+    <div class="text-center text-red-500 my-2 text-lg p-2"> {{errorMsg()}} </div>
+  }
+</section>

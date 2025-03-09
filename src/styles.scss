@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.toast-progress {
+  background-color: #fff;
+}
+
+.ngx-pagination .current {
+  background: #0e9f6e !important;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+}

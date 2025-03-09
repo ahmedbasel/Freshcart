@@ -1,0 +1,47 @@
+@if (product) {
+  <section class="pt-2 lg:pt-12">
+    <div class="grid grid-cols-1 lg:grid-cols-[70%_minmax(0,1fr)] gap-5">
+      <div class="col">
+        <div class="image w-full h-[300px] border border-[#ccc] rounded-md mb-5">
+          <img [src]="product.imageCover" class="w-full h-full" alt="product-image" />
+        </div>
+        <owl-carousel-o [options]="customOptions">
+          @for (image of product.images; track $index) {
+            <ng-template carouselSlide>
+              <img [src]="image" alt="product-image" class="w-full h-[150px]" />
+            </ng-template>
+          }
+        </owl-carousel-o>
+      </div>
+      <div class="col h-[350px] p-5">
+        <h2 class="text-xl text-green-600 mb-3"> {{product.title}} </h2>
+        <h3 class="my-2"> {{product.category.name}} </h3>
+        <ul class="flex space-x-2 my-3">
+          @for (num of [1,2,3,4,5].slice(0, product.ratingsAverage); track $index) {
+            <li><i class="fa fa-star text-yellow-300"></i></li>
+          }
+          @if (product.ratingsAverage % 1 != 0) {
+            <li><i class="fa fa-star-half text-yellow-300"></i></li>
+          }
+          <li>
+            <span class="text-gray-500">({{product.ratingsAverage}})</span> | <span class="text-green-600">in stock</span>
+          </li>
+        </ul>
+        <span class="block text-green-600 my-3"> {{product.price}} EGP </span>
+        <p class="text-gray-500 my-2"> {{product.description}} </p>
+        <div class="border-t border-black mt-5 pt-5">
+          <div class="flex gap-2">
+            <button (click)="addToCart(product.id)" class="flex-1 p-2 bg-green-600 text-white rounded-lg">add to cart</button>
+            <button class="size-[40px] rounded-full border border-green-600">
+              @if (productIds.includes(product.id)) {
+                <i (click)="removeProductFromWishlist(product.id)" class="fa-solid fa-heart text-xl text-red-600"></i>
+              } @else {
+                <i (click)="addToFavorite(product.id)" class="fa-solid fa-heart text-xl"></i>
+              }
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+}

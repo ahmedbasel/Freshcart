@@ -1,0 +1,28 @@
+<section>
+  <div class="grid grid-cols-1 gap-3 md:mt-5">
+    @for (product of products(); track product.id ) {
+      <div class="product bg-[#f6f6f6] flex flex-col md:flex-row items-center md:gap-5 rounded-lg border border-[#ccc] overflow-hidden">
+        <div class="image w-full md:w-[10%]">
+          <img loading="lazy" [src]="product.imageCover" class="w-full h-[200px] md:h-[100px]" alt="product image" />
+        </div>
+        <div class="flex flex-1 flex-col md:flex-row gap-5 md:gap-0 w-full justify-between items-center p-4">
+          <div class="content w-full">
+            <h2 class="text-green-600 font-medium mb-2"> {{product.title}} </h2>
+            <div class="flex justify-between md:justify-start gap-5">
+              <div class="price">
+                <span class="text-gray-600 font-medium"> {{'wishlistPage.price' | translate }} : </span>
+                <span class="text-green-600"> {{product.price}} {{'wishlistPage.priceCode' | translate }}</span>
+              </div>
+              <button (click)="removeProductFromWishlist(product.id)"><i class="fa-solid fa-trash text-green-600 text-[18px]"></i></button>
+            </div>
+          </div>
+          <button (click)="addToCart(product.id)" class="p-2 w-full md:w-[15%] bg-green-600 text-white rounded-lg"> {{'wishlistPage.btn' | translate }} </button>
+        </div>
+      </div>
+    } @empty {
+      <div class="flex justify-center items-center h-full">
+        <p class="text-red-600 text-2xl font-medium">{{'wishlistPage.wishlistEmpty' | translate }}</p>
+      </div>
+    }
+  </div>
+</section>

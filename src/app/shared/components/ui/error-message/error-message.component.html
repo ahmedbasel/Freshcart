@@ -1,0 +1,17 @@
+@if (inputControl()?.errors && inputControl()?.touched) {
+  <div class="mt-1">
+    <ul class="max-w-md space-y-1 text-red-600 list-none dark:text-gray-400">
+      @if (inputControl()?.getError('required')) {
+        <li> {{inputTitle()}} </li>
+      } @else if(inputControl()?.getError('email')) {
+        <li> {{'errors.validEmail' | translate  }} </li>
+      } @else if (inputControl()?.getError('pattern')) {
+        <li> {{inputMessage()}} </li>
+      } @else if (inputControl()?.getError('minlength')) {
+        <li> {{'errors.minlength' | translate}} Z</li>
+      } @else if (inputControl()?.getError('maxlength')) {
+        <li> {{'errors.maxlength' | translate}} </li>
+      }
+    </ul>
+  </div>
+}

@@ -1,0 +1,30 @@
+<section>
+  <table class="w-full text-left rtl:text-right">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="py-4 px-6">{{'ordersPage.image' | translate }}</th>
+        <th class="py-4 px-6">{{'ordersPage.name' | translate }}</th>
+        <th class="py-4 px-6">{{'ordersPage.price' | translate }}</th>
+        <th class="py-4 px-6">{{'ordersPage.quantity' | translate }}</th>
+        <th class="py-4 px-6">{{'ordersPage.total' | translate  }}</th>
+        <th class="py-4 px-6">{{'ordersPage.date' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (product of products(); track product.id) {
+        @for (item of product.cartItems; track $index) {
+          <tr class="bg-white border-b hover:bg-gray-100 transition-all duration-300">
+            <td class="p-4">
+              <img [src]="item.product.imageCover" class="w-14 md:w-20" alt="product-image" />
+            </td>
+            <td class="py-4 px-6">{{item.product.title}}</td>
+            <td class="py-4 px-6">{{item.price}} {{'ordersPage.priceCode' | translate }}</td>
+            <td class="py-4 px-6">{{item.count}}</td>
+            <td class="py-4 px-6">{{item.price * item.count}} {{'ordersPage.priceCode' | translate }}</td>
+            <td class="py-4 px-6">{{product.createdAt | date }}</td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</section>
